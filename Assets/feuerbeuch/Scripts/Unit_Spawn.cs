@@ -6,7 +6,6 @@ public class Unit_Spawn: NetworkBehaviour {
 	public GameObject Player2_meleeIns;
 	public Vector2 player1SpawnPos;
 	public Vector2 player2SpawnPos;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -35,15 +34,16 @@ public class Unit_Spawn: NetworkBehaviour {
 	[Command]
 	void CmdPlayer1_meleeIns()
 	{
-		GameObject tmp = Instantiate(Player1_meleeIns,player1SpawnPos,Quaternion.identity) as GameObject;
-		NetworkServer.Spawn(tmp);
+		GameObject tmp1 = Instantiate(Player1_meleeIns,player1SpawnPos,Quaternion.identity) as GameObject;
+		NetworkServer.SpawnWithClientAuthority(tmp1, connectionToClient);
+
 	}
 
 	[Command]
 	void CmdPlayer2_meleeIns()
 	{
-		GameObject tmp = Instantiate(Player2_meleeIns,player2SpawnPos,Quaternion.identity) as GameObject;
-		NetworkServer.Spawn(tmp);
+		GameObject tmp2 = Instantiate(Player2_meleeIns,player2SpawnPos,Quaternion.identity) as GameObject;
+		NetworkServer.SpawnWithClientAuthority(tmp2, connectionToClient);
 	}
 
 
