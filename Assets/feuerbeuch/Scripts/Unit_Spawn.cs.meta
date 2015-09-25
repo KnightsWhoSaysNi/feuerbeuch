@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7a8126d55fb9b9b43b0c21c92e842225
+timeCreated: 1442703812
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Player1_meleeIns: {fileID: 175038, guid: 61117ceb58d478942b10435ad4e73c09, type: 2}
+  - Player2_meleeIns: {fileID: 144204, guid: 74b7050f0e7b56544aff96b19b174e3d, type: 2}
+  - tmp: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
