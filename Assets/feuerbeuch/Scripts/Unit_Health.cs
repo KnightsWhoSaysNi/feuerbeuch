@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class Unit_Health : NetworkBehaviour {
 
-	[SyncVar(hook = "OnHealthChanged")] private int health = 100;
-	private Text HealthText;
+
+	[SyncVar] private string health = "100";
+	[SerializeField] private string Health = "100";
 
 	//Use this for initialization
 	void Start()
 	{
-		HealthText = GameObject.Find ("Player 1 - Melee HP").GetComponent<Text>();
-		SetHealthText();
+
 	}
 
 	//Update is called once per frame
@@ -25,17 +25,10 @@ public class Unit_Health : NetworkBehaviour {
 {
 	if(isLocalPlayer)
 	{
-		HealthText.text = "Health" + health.ToString();
+		
 	}
 }
-	public void DeductHealth (int dmg)
-	{
-	health -= dmg;
-	}
 
-	void OnHealthChanged(int hlth)
-	{
-		health = hlth;
-		SetHealthText ();
-	}
+
+
 }
