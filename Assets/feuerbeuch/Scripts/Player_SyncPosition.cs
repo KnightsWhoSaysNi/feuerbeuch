@@ -4,12 +4,12 @@ using UnityEngine.Networking;
 
 public class Player_SyncPosition : NetworkBehaviour {
 	[SyncVar]
-	private Vector2 syncPos;
+	private Vector3 syncPos;
 	
 	[SerializeField] private Transform myTransform;
 	[SerializeField] private float lerpRate = 15;
 	
-	private Vector2 lastPos;
+	private Vector3 lastPos;
 	private float threshold = 0.5f;
 	
 	
@@ -24,12 +24,12 @@ public class Player_SyncPosition : NetworkBehaviour {
 	{
 		if(!isLocalPlayer)
 		{
-			myTransform.position = Vector2.Lerp(myTransform.position, syncPos, Time.deltaTime * lerpRate);
+			myTransform.position = Vector3.Lerp(myTransform.position, syncPos, Time.deltaTime * lerpRate);
 		}
 	}
 	
 	[Command]
-	void CmdProvidePositionToServer(Vector2 pos)
+	void CmdProvidePositionToServer(Vector3 pos)
 	{
 		syncPos = pos;
 		Debug.Log("Command called");
@@ -38,7 +38,7 @@ public class Player_SyncPosition : NetworkBehaviour {
 	[ClientCallback]
 	void TransmitPosition()
 	{
-		if(hasAuthority && Vector2.Distance(myTransform.position, lastPos) > threshold)
+		if(hasAuthority && Vector3.Distance(myTransform.position, lastPos) > threshold)
 		{
 			CmdProvidePositionToServer(myTransform.position);
 			lastPos = myTransform.position;
